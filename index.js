@@ -3,7 +3,7 @@ const API_KEY = 'nVavvxZz82e3I7dEGvvFr2WzSCOHLxid80EFnzewDfJgkLn5kBiusuzV'
 const imgChange = document.querySelectorAll('img')
 const loadBtn = document.getElementById('loadBtn')
 const loadBtn2 = document.getElementById('loadBtn2')
-
+const id = document.querySelectorAll('text-muted')
 fetch('https://api.pexels.com/v1/search?query=pisatower&per_page=9', {
   method: 'GET',
   headers: {
@@ -70,13 +70,19 @@ fetch('https://api.pexels.com/v1/search?query=Giovanni&per_page=9', {
     imgLoop()
   })
 
-const buttons = document.querySelectorAll('button').forEach((e) => {
+document.querySelectorAll('button').forEach((e) => {
   if (e.textContent.trim() === 'Edit') {
     e.textContent = 'Hide'
+    e.classList.add('hideBtn')
   }
-  e.addEventListener('click', () => {
-    e.classList.add('d-none')
+})
+const hideBtn = document.querySelectorAll('.hideBtn')
+
+hideBtn.forEach((button) => {
+  button.addEventListener('click', () => {
+    const card = button.closest('.card')
+    if (card) {
+      card.classList.add('d-none')
+    }
   })
 })
-
-console.log(buttons)
